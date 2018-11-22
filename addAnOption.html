@@ -1,0 +1,39 @@
+<html>
+
+<head title="">
+
+</head>
+
+<body>
+    <form>
+        <select id="genres">
+            <option value="rock">Rock</option>
+            <option value="blues" selected>Blues</option>
+        </select>
+
+    </form>
+    <script>
+        function showSelectedOption() {
+            let result = '';
+            Array.from(Array.from(genres.options).filter(o => o.selected).options).filter(o => o.selected).every(o => result += `text:${o.text} value:${o.value} `);
+            console.log(result);
+        }
+
+        function addOption() {
+            let existing = Array.from(genres.options).some(o => o.text === 'Classic');
+            if (!existing)
+                genres.insertAdjacentHTML("beforeend", '<option value="classic">Classic</option>');
+        }
+
+        function selectClassic() {
+            for (let o of genres.options) {
+                if (o.text === 'Classic' && !o.selected) {
+                    o.selected = true;
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
