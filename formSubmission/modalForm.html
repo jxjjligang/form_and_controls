@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="modalForm.css">
+</head>
+
+<body id="body">
+    <div id='main'>
+        <h1>Click the button below</h1>
+        <input id="btnShowModal" type="button" value="Click to show the form" />
+    </div>
+
+    <div id="prompt-form-container" class="modal">
+        <form id="prompt-form">
+            <div id="prompt-message">Enter something...
+                <br>Please..</div>
+            <input name="text" type="text">
+            <input type="submit" value="Ok" name="submit">
+            <input type="button" name="cancel" value="Cancel">
+        </form>
+    </div>
+
+    <script>
+        let modal = document.getElementById('prompt-form-container');
+        btnShowModal.onclick = function (event) {
+            main.style.background = 'grey';
+            body.style.background = 'grey';
+            modal.classList.remove('modal');
+            form.text.focus();
+        }
+
+        let form = document.forms['prompt-form'];
+        form.submit.addEventListener('click', onSubmitOrCancel);
+        form.cancel.addEventListener('click', onSubmitOrCancel);
+
+        function onSubmitOrCancel(event) {
+            event.preventDefault();
+            console.log(form.text.value);
+            modal.classList.add('modal');
+            main.style.background = 'white';
+            body.style.background = 'white';
+        }
+    </script>
+</body>
+
+</html>
