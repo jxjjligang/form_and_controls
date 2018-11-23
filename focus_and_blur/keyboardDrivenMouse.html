@@ -34,7 +34,38 @@
 
 
   <script>
-    // ...your code...
+    mouse.tabIndex = "1";
+    mouse.addEventListener('keydown', onkeydown);
+    let arrowKeys = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'];
+    mouse.style.position = 'fixed';
+
+    function onkeydown(event) {
+      if (arrowKeys.indexOf(event.code) === -1)
+        return;
+
+      let mouseRect = mouse.getBoundingClientRect();
+      let bodyRect = document.documentElement.getBoundingClientRect();
+      switch (event.code) {
+        case 'ArrowRight':
+          if ((bodyRect.width - mouseRect.right) > mouseRect.width)
+            mouse.style.left = mouseRect.right + 'px';
+          break;
+        case 'ArrowLeft':
+          if (mouseRect.left > mouseRect.width)
+            mouse.style.left = (mouseRect.left - mouseRect.width) + 'px';
+          break;
+        case 'ArrowUp':
+          if (mouseRect.top > mouseRect.height)
+            mouse.style.top = (mouseRect.top - mouseRect.height) + 'px';
+          break;
+        case 'ArrowDown':
+          if ((window.innerHeight - mouseRect.bottom) > mouseRect.height)
+            mouse.style.top = mouseRect.bottom + 'px';
+          break;
+        default:
+          break;
+      }
+    }
   </script>
 
 </body>
